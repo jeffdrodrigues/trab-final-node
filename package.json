@@ -1,0 +1,27 @@
+{
+  "name": "trab-final-node",
+  "version": "1.0.0",
+  "description": "Trabalho final - Arquitetura de Software na Plataforma NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffdrodrigues/trab-final-node.git"
+  },
+  "author": "Jefferson Duarte Rodrigues",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffdrodrigues/trab-final-node/issues"
+  },
+  "homepage": "https://github.com/jeffdrodrigues/trab-final-node#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^7.3.0"
+  }
+}
