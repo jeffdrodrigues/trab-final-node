@@ -6,6 +6,8 @@ window.onload = function () {
     var socketStatus = document.getElementById("status");
     var closeBtn = document.getElementById("close");
   
+    socketStatus.innerHTML = "Criando socket+++";
+    
     // Cria um novo socket.
     var socket = new WebSocket("ws://trab-final-node-jeff.herokuapp.com/"); 
   
