@@ -6,11 +6,7 @@ const WebSocket = require("ws");
 const procOperacoes = require("./module/processarOperacoes");
 
 const app = express();
-/*
-app.get("/", function (req, res) {
-  res.send("Hello World");
-});
-*/
+
 app.use("/", express.static("./site"));
 
 //Inicializa um servidor HTTP orquestrado pelo express
