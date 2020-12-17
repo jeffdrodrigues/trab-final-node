@@ -5,6 +5,7 @@ window.onload = function () {
     var messagesList = document.getElementById("messages");
     var socketStatus = document.getElementById("status");
     var closeBtn = document.getElementById("close");
+    const port = process.env.PORT || 3000;
   
     socketStatus.innerHTML = "Criando socket+++";
     
@@ -12,7 +13,7 @@ window.onload = function () {
     var socket = new WebSocket("ws://localhost/"); 
   
     
-    socketStatus.innerHTML = "criou socket";
+    socketStatus.innerHTML = "criou socket " + port;
     
     // Função para tratar os erros que podem ocorrer
     socket.onerror = function (error) {
