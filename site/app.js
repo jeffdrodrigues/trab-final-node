@@ -7,11 +7,11 @@ window.onload = function () {
     var closeBtn = document.getElementById("close");
     const port = process.env.PORT || 3000;
   
-    socketStatus.innerHTML = "Criando socket+++";
+    console.log(`Servidor ativo na porta: ${port}`);
     
     // Cria um novo socket.
-    var socket = new WebSocket("ws://localhost/"); 
-  
+    //var socket = new WebSocket("ws://localhost:" + port); 
+    var socket = new WebSocket(`ws://localhost:${port}/`);
     
     socketStatus.innerHTML = "criou socket " + port;
     
