@@ -7,9 +7,11 @@ window.onload = function () {
     var closeBtn = document.getElementById("close");
   
     // Cria um novo socket.
-    var socket = new WebSocket("ws://trab-final-node-jeff.herokuapp.com/");
-    //var socket = new WebSocket("ws://echo.websocket.org/");
+    var socket = new WebSocket("ws://trab-final-node-jeff.herokuapp.com/"); 
   
+    
+    socketStatus.innerHTML = "criou socket";
+    
     // Função para tratar os erros que podem ocorrer
     socket.onerror = function (error) {
       console.log("WebSocket Error: ", error);
