@@ -1,47 +1,63 @@
-const { Console } = require("console");
-const express = require("express");
-const http = require("http");
-const { parse } = require("path");
-const WebSocket = require("ws");
-const procOperacoes = require("./module/processarOperacoes");
-
+const operacoes = require("./module/operacoes");
+const express = require('express');
 const app = express();
+const port = process.env.PORT || 3000;
 
-app.use("/", express.static("./site"));
+app.listen(port, () => {
+    console.log(`Servidor ativo na porta: ${port}`);
+  })
 
-//Inicializa um servidor HTTP orquestrado pelo express
-const server = http.createServer(app);
+app.get('/', (req, res) => {
+  res.send('Serviço está ativo!');
+})
 
-//Inicializa um instancia de servidor websocket a partir do servidor http
-const wss = new WebSocket.Server({ server });
-
-// Função responsável por manusear a conexão websocket
-wss.on("connection", (ws) => {
-  // Função que trata as mensagens recebidas pelo servidor
-  ws.on("message", (message) => {
-    console.log("Mensagem recebida: ", message);
-    ws.send(ProcessarResposta(message));
-  });
-});
-
-
-function ProcessarResposta(msg){
-    var operacao = null;
-    var num1;
-    var num2;
+app.get('/operacao/:operacao/:num1/:num2', (req, res) => {
+    const num1 = parseInt(req.params.num1 || 0);
+    const num2 = parseInt(req.params.num2 || 0);
+    const operacao = req.params.operacao;
     var result = 0;
     var erro = false;
 
-    ({ operacao, num1, num2 } = procOperacoes.InterpretarOperacao(msg, operacao, num1, num2));
-    ({ erro, result, operacao } = procOperacoes.ProcessarOperacao(operacao, num1, num2, result, erro));
+    ({ erro, result } = ProcessarOperacao(operacao, num1, num2, result, erro));
 
     if (erro)
-        return result;
+        res.send(result);
     else
-        return (`O resultado da ${operacao} é: ${result}`);
-}
+        res.send(`O resultado da ${operacao} é: ${result}`);
+  })
 
-//Inicia o servidor
-server.listen(process.env.PORT || 9898, () => {
-  console.log("Servidor conectado na porta:", server.address().port);
-});
+  app.post("/operacao", (req, res) => {
+    const num1 = parseInt(req.query.num1 || 0);
+    const num2 = parseInt(req.query.num2 || 0);
+    const operacao = req.query.operacao;
+    var result = 0;
+    var erro = false;
+
+    ({ erro, result } = ProcessarOperacao(operacao, num1, num2, result, erro));
+
+    if (erro)
+        res.send(result);
+    else
+        res.send(`O resultado da ${operacao} é: ${result}`);
+})
+
+function ProcessarOperacao(operacao, num1, num2, result, erro) {
+    switch (operacao) {
+        case 'soma':
+            result = operacoes.soma(num1, num2);
+            break;
+        case 'subtração':
+            result = operacoes.subtracao(num1, num2);
+            break;
+        case 'multiplicação':
+            result = operacoes.multiplicacao(num1, num2);
+            break;
+        case 'divisão':
+            result = operacoes.divisao(num1, num2);
+            break;
+        default:
+            result = `Desculpe, não foi possível utilizar o operador: ${operacao}.`;
+            var erro = true;
+    }
+    return { erro, result };
+}
