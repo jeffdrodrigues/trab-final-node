@@ -20,8 +20,10 @@ function ProcessarOperacao(operacao, num1, num2, result, erro) {
             operacao = "divisão";
             break;
         default:
-            result = `Desculpe, não foi possível utilizar o operador: ${operacao}.`;
-            erro = true;
+            {
+                result = `Desculpe, não foi possível utilizar o operador: ${operacao}.`;
+                erro = true;
+            }
     }
     return { erro, result, operacao };
 }
