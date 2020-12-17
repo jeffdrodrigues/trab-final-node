@@ -8,7 +8,9 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-app.use("/", express.static("./site"));
+app.get('/', (req, res) => {
+  res.send('Serviço está ativo!');
+});
 
 //Inicializa um servidor HTTP orquestrado pelo express
 const server = http.createServer(app);
