@@ -13,7 +13,7 @@ window.onload = function () {
     //var socket = new WebSocket("ws://localhost:" + port); 
     var socket = new WebSocket(`ws://localhost:${port}/`);
     
-    socketStatus.innerHTML = "criou socket " + port;
+    console.log("criou socket " + port);
     
     // Função para tratar os erros que podem ocorrer
     socket.onerror = function (error) {
