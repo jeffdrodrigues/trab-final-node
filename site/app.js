@@ -9,7 +9,7 @@ window.onload = function () {
     socketStatus.innerHTML = "Criando socket+++";
     
     // Cria um novo socket.
-    var socket = new WebSocket("ws://trab-final-node-jeff.herokuapp.com:3000/"); 
+    var socket = new WebSocket("ws://localhost:3000/"); 
   
     
     socketStatus.innerHTML = "criou socket";
