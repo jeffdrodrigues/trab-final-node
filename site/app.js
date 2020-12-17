@@ -6,18 +6,8 @@ window.onload = function () {
     var socketStatus = document.getElementById("status");
     var closeBtn = document.getElementById("close");
     
-    
-    console.log("antes de pegar a porta");
-    
-    const port = process.env.PORT || 3000;
-  
-    console.log(`Servidor ativo na porta: ${port}`);
-    
     // Cria um novo socket.
-    //var socket = new WebSocket("ws://localhost:" + port); 
-    var socket = new WebSocket(`ws://localhost:${port}/`);
-    
-    console.log("criou socket " + port);
+    var socket = new WebSocket("ws://trab-final-node-jeff.herokuapp.com/");     
     
     // Função para tratar os erros que podem ocorrer
     socket.onerror = function (error) {
